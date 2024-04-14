@@ -72,12 +72,9 @@ dependencies {
 
     def nav_version = "2.7.7"
     def hilt_version = "2.51.1"
-    def retrofit_version = "2.9.0"
-    def coil_version = "2.4.0"
     def datastore_version = "1.0.0"
     def compose_version = "1.6.5"
     def accompanist_version = "0.31.4-beta"
-    def paging_version = "3.2.1"
     def room_version = "2.6.1"
     def splash_version = "1.0.1"
 
@@ -94,13 +91,6 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$hilt_version" // Dagger compiler
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
-    //Coil
-    implementation("io.coil-kt:coil-compose:$coil_version")
-
     //Datastore
     implementation "androidx.datastore:datastore-preferences:$datastore_version"
 
@@ -109,10 +99,6 @@ dependencies {
 
     //Accompanist
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
-
-    //Paging 3
-    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
-    implementation "androidx.paging:paging-compose:$paging_version"
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
