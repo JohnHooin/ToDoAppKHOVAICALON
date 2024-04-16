@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 
@@ -12,11 +13,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TaskDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE) // this onConflict resolve problem that may occur when we try to do inserting, it will do the update data instead of inserting
     suspend fun insertTask(taskModel: TaskModel)
-
-    suspend fun updateTask(taskModel: TaskModel)
-
     @Delete
     suspend fun deleteTask(taskModel: TaskModel)
 

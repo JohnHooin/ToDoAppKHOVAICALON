@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(
     init {
         appEntryUseCases.readAppEntry().onEach { shouldStartFromHomeScreen ->
             if(shouldStartFromHomeScreen){
-                _startDestination.value = Route.TodoNavigation.route
+                _startDestination.value = Route.TodoNavigatorScreen.route
             }else{
                 _startDestination.value = Route.AppStartNavigation.route
             }

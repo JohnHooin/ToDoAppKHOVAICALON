@@ -14,10 +14,6 @@ class TaskRepositoryImpl (
         taskDao.insertTask(taskModel)
     }
 
-    override suspend fun updateTask(taskModel: TaskModel) {
-        taskDao.updateTask(taskModel)
-    }
-
     override suspend fun deleteTask(taskModel: TaskModel) {
         taskDao.deleteTask(taskModel)
     }

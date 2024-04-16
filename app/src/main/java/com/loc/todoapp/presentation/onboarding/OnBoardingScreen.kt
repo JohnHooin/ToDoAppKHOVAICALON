@@ -94,10 +94,3 @@ fun OnBoardingScreen(
         Spacer(modifier = Modifier.weight(0.5f))
     }
 }
-
-
-//@Preview
-//@Composable
-//fun OnBoardingScreenPreview() {
-//    OnBoardingScreen()
-//}

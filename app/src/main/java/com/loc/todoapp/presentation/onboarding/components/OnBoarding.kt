@@ -22,7 +22,7 @@ import com.loc.todoapp.presentation.onboarding.Dimens.MediumPadding1
 import com.loc.todoapp.presentation.onboarding.Dimens.MediumPadding2
 import com.loc.todoapp.presentation.onboarding.Page
 import com.loc.todoapp.presentation.onboarding.pages
-import com.loc.todoapp.ui.theme.TodoAppTheme
+import com.loc.todoapp.presentation.theme.TodoAppTheme
 
 @Composable
 fun OnBoarding(
@@ -51,14 +51,5 @@ fun OnBoarding(
             style = MaterialTheme.typography.bodyMedium,
             color = colorResource(id = R.color.text_medium)
         )
-    }
-}
-
-@Preview(showBackground = true)
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun OnBoardingPagePreview() {
-    TodoAppTheme {
-        OnBoarding(page = pages[0])
     }
 }

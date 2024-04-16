@@ -15,7 +15,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loc.todoapp.presentation.nvgraph.NavGraph
-import com.loc.todoapp.ui.theme.TodoAppTheme
+import com.loc.todoapp.presentation.theme.TodoAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 

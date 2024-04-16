@@ -1,4 +1,4 @@
-package com.loc.todoapp.ui.theme
+package com.loc.todoapp.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -16,7 +16,11 @@ val Poppins = FontFamily(
         Font(R.font.poppins_semibold, FontWeight.SemiBold),
     )
 )
-
+val ubuntu = FontFamily(
+    listOf(
+        Font(R.font.ubuntu)
+    )
+)
 // Set of Material typography styles to start with
 // body is "Text" in the Figma Design
 // label small is xsmall in Figma Design

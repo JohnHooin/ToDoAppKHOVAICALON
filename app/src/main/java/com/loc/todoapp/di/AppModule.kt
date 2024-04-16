@@ -3,6 +3,7 @@ package com.loc.todoapp.di
 import android.app.Application
 import androidx.room.Room
 import com.loc.todoapp.data.local.taskdata.TaskDatabase
+import com.loc.todoapp.data.local.taskdata.TaskRepository
 import com.loc.todoapp.data.local.taskdata.TaskRepositoryImpl
 import com.loc.todoapp.data.manager.LocalUserManagerImpl
 import com.loc.todoapp.domain.manager.LocalUserManager
@@ -46,7 +47,10 @@ object AppModule {
     @Singleton
     fun provideTaskRepository(
         taskDatabase: TaskDatabase
-    ) = TaskRepositoryImpl(taskDatabase.dao) // this will create repository instance using the dao from
+    ) : TaskRepository{
+        return TaskRepositoryImpl(taskDatabase.dao)
+
+    } // this will create repository instance using the dao from
     // the database instance that we have created above
 
 

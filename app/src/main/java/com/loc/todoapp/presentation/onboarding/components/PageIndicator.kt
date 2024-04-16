@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import com.loc.todoapp.presentation.onboarding.Dimens.IndicatorSize
-import com.loc.todoapp.ui.theme.BlueGray
+import com.loc.todoapp.presentation.theme.BlueGray
 
 @Composable
 fun PagerIndicator(
