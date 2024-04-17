@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="App.Starting.Theme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+<!--        Apply the main theme for app after splash screen -->
+        <item name="postSplashScreenTheme">@style/Theme.ToDoApp</item>
+
+    </style>
+</resources>
