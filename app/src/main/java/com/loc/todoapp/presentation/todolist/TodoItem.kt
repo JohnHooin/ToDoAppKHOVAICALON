@@ -84,14 +84,14 @@ fun LazyItemScope.TodoItem(
     ) {
         Row(
             modifier = Modifier
-                .padding(top = 15.dp)
+                .padding(top = 8.dp)
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(5.dp))
                 .background(color)
                 .clickable { onEvent(TodoListEvent.OnDoneChange(task, !task.isDone)) }
                 .padding(
                     horizontal = 8.dp,
-                    vertical = 16.dp
+                    vertical = 8.dp
                 )
             ,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -146,6 +146,7 @@ fun LazyItemScope.TodoItem(
                         fontSize = 18.sp,
                     )
                     Text(
+                        modifier = Modifier.padding(bottom = 10.dp),
                         text = task.description,
                         color = Color(0xFFEBEBEB),
                         fontSize = 12.sp
@@ -197,17 +198,15 @@ fun LazyItemScope.TodoItem(
                 .padding(start = 8.dp, bottom = 1.dp)
                 .align(Alignment.BottomStart)
         )
-        task.endDate?.let {
-            Text(
-                text = it.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " +  task.endTime
-                    .format(DateTimeFormatter.ofPattern("hh:mm a")),
-                color = Color.White,
-                fontSize = 10.sp,
-                modifier = Modifier
-                    .padding(end = 8.dp, bottom = 1.dp)
-                    .align(Alignment.BottomEnd)
-            )
-        }
+        Text(
+            text = task.endDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " +  task.endTime
+                .format(DateTimeFormatter.ofPattern("hh:mm a")),
+            color = Color.White,
+            fontSize = 10.sp,
+            modifier = Modifier
+                .padding(end = 8.dp, bottom = 1.dp)
+                .align(Alignment.BottomEnd)
+        )
 
 
     }
