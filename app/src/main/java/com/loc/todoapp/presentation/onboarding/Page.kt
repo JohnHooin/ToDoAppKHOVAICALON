@@ -16,7 +16,7 @@ val pages = listOf(
         image = R.drawable.img_1
     ),
     Page(
-        title = "Bài còn nhiều sai xót về UI/UX",
+        title = "Bài còn nhiều sai xót về mặt UI/UX",
         description = "Nhóm có không có bông hồng làm đạo diễn nghệ thuật.",
         image = R.drawable.img_2
     ),

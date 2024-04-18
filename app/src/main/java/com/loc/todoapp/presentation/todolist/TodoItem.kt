@@ -58,8 +58,6 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-
-
 @SuppressLint("SimpleDateFormat")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -68,13 +66,11 @@ fun LazyItemScope.TodoItem(
     onEvent: (TodoListEvent) -> Unit
 
 ) {
-
     val color by animateColorAsState(
         targetValue = if (task.isDone) Color(0xFF24D65F) else Color(0xFFFF6363),
         label = "",
         animationSpec = tween(500)
     )
-
 
     Box(
         modifier = Modifier
@@ -190,8 +186,7 @@ fun LazyItemScope.TodoItem(
 
         }
         Text(
-            text = task.startDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " +  task.startTime
-                .format(DateTimeFormatter.ofPattern("hh:mm a")),
+            text = task.startDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
             color = Color.White,
             fontSize = 10.sp,
             modifier = Modifier
@@ -207,7 +202,6 @@ fun LazyItemScope.TodoItem(
                 .padding(end = 8.dp, bottom = 1.dp)
                 .align(Alignment.BottomEnd)
         )
-
 
     }
 }
