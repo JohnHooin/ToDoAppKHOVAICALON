@@ -13,7 +13,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import com.loc.todoapp.util.StringAndDateConvertor
+import java.time.LocalDate
+import java.time.LocalTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,11 +28,14 @@ class TodoListAddEditViewModel @Inject constructor(
         private set
     var description by mutableStateOf("")
         private set
-    var startDate by mutableStateOf("")
+    var startDate by mutableStateOf(LocalDate.now())
         private set
-    var endDate by mutableStateOf("")
+    var endDate by mutableStateOf(LocalDate.now())
         private set
-
+    var startTime by mutableStateOf(LocalTime.NOON)
+        private set
+    var endTime by mutableStateOf(LocalTime.NOON)
+        private set
     private val _uiEvent = Channel<UIEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
@@ -42,8 +46,6 @@ class TodoListAddEditViewModel @Inject constructor(
                 repository.getTaskById(taskId)?.let { todo ->
                     title = todo.title
                     description = todo.description
-                    startDate = StringAndDateConvertor.dateToString(todo.startDate)
-                    endDate = StringAndDateConvertor.dateToString(todo.endDate)
                     this@TodoListAddEditViewModel.task = todo
                 }
             }
@@ -61,8 +63,14 @@ class TodoListAddEditViewModel @Inject constructor(
             is TodoListAddEditEvent.OnStartDateChange -> {
                 startDate = event.startDate
             }
+            is TodoListAddEditEvent.OnStartTimeChange -> {
+                startTime = event.startTime
+            }
             is TodoListAddEditEvent.OnEndDateChange -> {
                 endDate = event.endDate
+            }
+            is TodoListAddEditEvent.OnEndTimeChange -> {
+                endTime = event.endTime
             }
             is TodoListAddEditEvent.OnDoneChange -> {
                 task = task?.copy(isDone = event.isDone)
@@ -86,22 +94,16 @@ class TodoListAddEditViewModel @Inject constructor(
                         )
                         return@launch
                     }
-                    if (startDate.isBlank() || endDate.isBlank()) {
-                        sendUiEvent(
-                            UIEvent.ShowSnackbar(
-                                message = "The start day and deadline can't be empty"
-                            )
-                        )
-                        return@launch
-                    }
                     repository.insertTask(
                         TaskModel(
                             title = title,
                             description = description,
                             isDone = task?.isDone ?: false,
                             id = task?.id,
-                            startDate = task?.startDate ?: StringAndDateConvertor.stringToDate(startDate),
-                            endDate = task?.endDate ?: StringAndDateConvertor.stringToDate(endDate)
+                            startDate = startDate,
+                            startTime = startTime,
+                            endDate = endDate,
+                            endTime = endTime
                         )
                     )
                     sendUiEvent(UIEvent.PopBackStack)
