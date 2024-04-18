@@ -39,7 +39,9 @@ object AppModule {
         app: Application
     ): TaskDatabase {
         return Room.databaseBuilder(app, TaskDatabase::class.java, TaskDatabase.DATABASE_NAME)
-            .fallbackToDestructiveMigration() // This will delete the database and recreate it when the version number is changed which means that the database is not backward compatible or changed structure
+            .allowMainThreadQueries() // allow main thread queries for avoid this error Cannot access database on the main thread since it may potentially lock the UI for a long period of time.
+           // is there any better to do this without allowMainThreadQueries()?
+            .fallbackToDestructiveMigration()// This will delete the database and recreate it when the version number is changed which means that the database is not backward compatible or changed structure
             .build()
     }
 

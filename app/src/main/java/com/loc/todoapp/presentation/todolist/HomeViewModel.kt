@@ -1,5 +1,6 @@
 package com.loc.todoapp.presentation.home
 
+import androidx.compose.material3.SnackbarDuration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.loc.todoapp.data.local.taskdata.TaskModel
@@ -58,7 +59,8 @@ class HomeViewModel @Inject constructor(
                     repository.deleteTask(event.task)
                     sendUIEvent(UIEvent.ShowSnackbar(
                         message = "Todo deleted",
-                        actionLabel = "Undo"
+                        actionLabel = "Undo",
+                        duration = SnackbarDuration.Short
                     ))
                 }
             }

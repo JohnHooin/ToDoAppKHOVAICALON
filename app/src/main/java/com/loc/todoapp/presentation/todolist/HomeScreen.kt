@@ -50,10 +50,13 @@ fun HomeScreen(
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UIEvent.ShowSnackbar -> {
-                    val result = snackbarHostState.showSnackbar(
-                        message = event.message,
-                        actionLabel = event.actionLabel
-                    )
+                    val result = event.duration?.let {
+                        snackbarHostState.showSnackbar(
+                            message = event.message,
+                            actionLabel = event.actionLabel,
+                            duration = it
+                        )
+                    }
                     if (result == SnackbarResult.ActionPerformed) {
                         viewModel.onEvent(TodoListEvent.OnUndoDelete)
                     }

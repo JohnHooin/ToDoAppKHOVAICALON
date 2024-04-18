@@ -1,6 +1,7 @@
 package com.loc.todoapp.presentation.todolist.todolist_add_edit
 
 import android.annotation.SuppressLint
+import android.provider.CalendarContract.Colors
 import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -64,6 +68,7 @@ fun TodoListAddEditScreen(
                             actionLabel = event.actionLabel
                         )
                     }
+
                     else -> Unit
                 }
             }
@@ -102,6 +107,7 @@ fun TodoListAddEditScreen(
         val timeDialogState = rememberMaterialDialogState()
         val timeEndDialogState = rememberMaterialDialogState()
         val context = LocalContext.current
+        val buttonWidth = 200.dp
 
         Scaffold(
             snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -110,7 +116,7 @@ fun TodoListAddEditScreen(
                 .padding(16.dp),
             floatingActionButton = {
                 FloatingActionButton(onClick = {
-                        viewModel.onEvent(TodoListAddEditEvent.OnSaveTodoClick)
+                    viewModel.onEvent(TodoListAddEditEvent.OnSaveTodoClick)
                 }) {
                     Icon(
                         imageVector = Icons.Default.Check,
@@ -120,11 +126,10 @@ fun TodoListAddEditScreen(
             }
         ) {
             Column(
-
-                modifier = Modifier.fillMaxSize()
-
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 35.dp)
             ) {
-
                 TextField(
 
                     value = viewModel.title,
@@ -197,25 +202,23 @@ fun TodoListAddEditScreen(
                     Column(
 
                         modifier = Modifier
-
                             .weight(1f)
-
                             .wrapContentHeight(),
 
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.Start
 
                     ) {
 
                         Button(
 
                             modifier = Modifier
-
-                                .wrapContentHeight()
-
-                                .wrapContentWidth(),
+                                .width(buttonWidth),
 
                             shape = RoundedCornerShape(8.dp),
-
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.DarkGray,
+                                contentColor = Color.White
+                            ),
                             onClick = {
 
                                 dateDialogState.show()
@@ -239,10 +242,13 @@ fun TodoListAddEditScreen(
                         Button(
 
                             modifier = Modifier
-                                .wrapContentHeight(),
+                                .width(buttonWidth),
 
                             shape = RoundedCornerShape(8.dp),
-
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.DarkGray,
+                                contentColor = Color.White
+                            ),
                             onClick = {
 
                                 timeDialogState.show()
@@ -251,7 +257,7 @@ fun TodoListAddEditScreen(
 
                         ) {
 
-                            Text(text = "Giờ bắt đầu: $formattedTime")
+                            Text(text =  "Bắt đầu: $formattedTime")
 
                         }
 
@@ -261,20 +267,20 @@ fun TodoListAddEditScreen(
 
                         modifier = Modifier
 
-                            .weight(1f)
+                            .weight(1f),
 
-                            .wrapContentHeight(),
-
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.Start
 
                     ) {
 
                         Button(
 
                             modifier = Modifier
-
-                                .wrapContentHeight(),
-
+                                .width(buttonWidth),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.DarkGray,
+                                contentColor = Color.White
+                            ),
                             shape = RoundedCornerShape(8.dp),
 
                             onClick = {
@@ -297,9 +303,11 @@ fun TodoListAddEditScreen(
                         Button(
 
                             modifier = Modifier
-
-                                .wrapContentHeight(),
-
+                                .width(buttonWidth),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.DarkGray,
+                                contentColor = Color.White
+                            ),
                             shape = RoundedCornerShape(8.dp),
 
                             onClick = {
@@ -310,7 +318,8 @@ fun TodoListAddEditScreen(
 
                         ) {
 
-                            Text(text = "Giờ kết thúc: $formattedEndTime")
+                            Text(text = "Kết thúc: $formattedEndTime")
+
 
                         }
 
@@ -354,7 +363,7 @@ fun TodoListAddEditScreen(
                         title = "Chọn giờ",
                         timeRange = LocalTime.MIDNIGHT..LocalTime.MAX,
                         is24HourClock = true
-                    ) {selectedTime ->
+                    ) { selectedTime ->
                         viewModel.onEvent(TodoListAddEditEvent.OnStartTimeChange(selectedTime))
                     }
                 }
@@ -399,7 +408,7 @@ fun TodoListAddEditScreen(
                         title = "Chọn giờ kết thúc",
                         timeRange = LocalTime.MIDNIGHT..LocalTime.MAX,
                         is24HourClock = true
-                    ) {selectedTime ->
+                    ) { selectedTime ->
                         viewModel.onEvent(TodoListAddEditEvent.OnEndTimeChange(selectedTime))
                     }
                 }
@@ -407,4 +416,3 @@ fun TodoListAddEditScreen(
         }
     }
 }
-

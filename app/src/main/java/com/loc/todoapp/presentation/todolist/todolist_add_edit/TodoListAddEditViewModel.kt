@@ -28,13 +28,13 @@ class TodoListAddEditViewModel @Inject constructor(
         private set
     var description by mutableStateOf("")
         private set
-    var startDate by mutableStateOf(LocalDate.now())
+    var startDate: LocalDate by mutableStateOf(LocalDate.now())
         private set
-    var endDate by mutableStateOf(LocalDate.now())
+    var endDate: LocalDate by mutableStateOf(LocalDate.now())
         private set
-    var startTime by mutableStateOf(LocalTime.NOON)
+    var startTime: LocalTime by mutableStateOf(LocalTime.NOON)
         private set
-    var endTime by mutableStateOf(LocalTime.NOON)
+    var endTime :LocalTime by mutableStateOf(LocalTime.NOON)
         private set
     private val _uiEvent = Channel<UIEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -46,6 +46,10 @@ class TodoListAddEditViewModel @Inject constructor(
                 repository.getTaskById(taskId)?.let { todo ->
                     title = todo.title
                     description = todo.description
+                    startDate = todo.startDate
+                    startTime = todo.startTime
+                    endDate = todo.endDate
+                    endTime = todo.endTime
                     this@TodoListAddEditViewModel.task = todo
                 }
             }
@@ -75,7 +79,6 @@ class TodoListAddEditViewModel @Inject constructor(
             is TodoListAddEditEvent.OnDoneChange -> {
                 task = task?.copy(isDone = event.isDone)
             }
-
             is TodoListAddEditEvent.OnSaveTodoClick -> {
                 viewModelScope.launch {
                     if (title.isBlank()) {
@@ -95,7 +98,7 @@ class TodoListAddEditViewModel @Inject constructor(
                         return@launch
                     }
                     repository.insertTask(
-                        TaskModel(
+                        TaskModel (
                             title = title,
                             description = description,
                             isDone = task?.isDone ?: false,

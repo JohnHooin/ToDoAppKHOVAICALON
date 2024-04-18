@@ -10,7 +10,8 @@ import java.time.LocalTime
 
 @Entity
 data class TaskModel(
-    @PrimaryKey val id: Int? = null,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int ?= null,
     var title: String,
     var description: String,
     var endDate: LocalDate,
@@ -18,4 +19,6 @@ data class TaskModel(
     var isDone: Boolean,
     var startDate: LocalDate,
     var endTime: LocalTime
-)
+){
+
+}

@@ -11,7 +11,7 @@ data class Page(
 
 val pages = listOf(
     Page(
-        title = "To Do List App 2024",
+        title = "To Do List Mobile App 2024.",
         description = "Sản phẩm chống cháy bài giữa kỳ của tụi em",
         image = R.drawable.img_1
     ),
