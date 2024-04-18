@@ -12,11 +12,11 @@ data class Page(
 val pages = listOf(
     Page(
         title = "To Do List App 2024",
-        description = "Sản phẩm chống cháy bài giữa kỳ của tụi em",
+        description = "Sản phẩm chống cháy bài giữa kỳ",
         image = R.drawable.img_1
     ),
     Page(
-        title = "Bài còn nhiều sai xót về UI/UX",
+        title = "Bài còn nhiều sai xót về mặt UI/UX",
         description = "Nhóm có không có bông hồng làm đạo diễn nghệ thuật.",
         image = R.drawable.img_2
     ),
